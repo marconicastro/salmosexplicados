@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import GoogleTagManager from "@/components/GoogleTagManager";
-import { Suspense } from "react"; // Linha de importação corrigida
+import { Suspense } from "react"; // Importa o Suspense
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,7 +44,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        {/* Correção: Envolve o GTM com Suspense para corrigir o erro de build */}
+        {/* Envolve o GTM com Suspense para corrigir o erro de build */}
         <Suspense fallback={null}>
           <GoogleTagManager />
         </Suspense>
