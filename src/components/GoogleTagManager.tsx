@@ -15,7 +15,7 @@ const pageview = (url: string) => {
 }
 
 // IMPORTANTE: Substitua pelo seu ID do GTM
-const GTM_ID = 'GTM-XXXXXX'; 
+const GTM_ID = 'GTM-MZBKP24M'; 
 
 export default function GoogleTagManager() {
   const pathname = usePathname()
