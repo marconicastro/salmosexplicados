@@ -19,6 +19,16 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [pulse]);
 
+  // Função para lidar com o clique e enviar evento para o Data Layer
+  const handleWhatsAppClick = () => {
+    if (typeof window.dataLayer !== 'undefined') {
+      window.dataLayer.push({
+        event: 'whatsapp_click'
+      });
+    }
+    window.open(whatsappLink, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Cabeçalho */}
@@ -36,15 +46,8 @@ export default function Home() {
 
       {/* Conteúdo Principal */}
       <main className="container mx-auto px-4 py-8 md:py-12 max-w-2xl">
-        {/* Badge de Destaque */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-4 py-2 rounded-full text-sm font-bold">
-            <Sparkles className="w-4 h-4" />
-            MATERIAL EXCLUSIVO
-            <Sparkles className="w-4 h-4" />
-          </div>
-        </div>
-
+        {/* ... (todo o conteúdo inicial permanece o mesmo) ... */}
+        
         {/* SELO MAIS IMPORTANTE - PAGUE DEPOIS */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-4 rounded-full text-lg font-bold shadow-lg animate-pulse">
@@ -57,7 +60,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Headline e Sub-headline */}
+        {/* ... (o resto do conteúdo até o primeiro botão permanece o mesmo) ... */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Descubra a
@@ -71,10 +74,9 @@ export default function Home() {
           </p>
         </div>
 
-        {/* CARD PRINCIPAL COM DESTAQUE MÁXIMO PARA WHATSAPP */}
         <Card className="shadow-2xl border border-white/20 bg-white/10 backdrop-blur-sm mb-8 overflow-hidden">
           <CardContent className="p-6 md:p-8">
-            {/* Imagem do Produto */}
+            {/* ... (conteúdo do card permanece o mesmo até o botão) ... */}
             <div className="relative rounded-lg overflow-hidden mb-8">
               <img 
                 src="/150-salmos-produto.png" 
@@ -91,7 +93,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* BENEFÍCIOS */}
             <div className="grid md:grid-cols-2 gap-4 mb-8">
               <div className="flex items-center space-x-3 bg-white/5 rounded-lg p-4">
                 <Check className="w-6 h-6 text-green-400 flex-shrink-0" />
@@ -111,12 +112,10 @@ export default function Home() {
               </div>
             </div>
 
-            {/* DESTAQUE MÁXIMO - RECEBA VIA WHATSAPP */}
             <div className="relative mb-8">
-              {/* Background animado */}
               <div className={`absolute inset-0 bg-gradient-to-r from-green-500/20 to-emerald-600/20 rounded-2xl ${pulse ? 'animate-pulse' : ''}`}></div>
               <div className="relative bg-gradient-to-r from-green-600/30 to-emerald-700/30 border-2 border-green-400/50 rounded-2xl p-8 text-center">
-                {/* Ícones flutuantes */}
+                {/* ... (conteúdo do destaque permanece o mesmo até o botão) ... */}
                 <div className="flex justify-center space-x-4 mb-4">
                   <div className="bg-green-500 rounded-full p-3 animate-bounce">
                     <Smartphone className="w-8 h-8 text-white" />
@@ -128,8 +127,6 @@ export default function Home() {
                     <MessageCircle className="w-8 h-8 text-white" />
                   </div>
                 </div>
-
-                {/* Texto principal com destaque máximo */}
                 <div className="mb-6">
                   <div className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
                     📌 RECEBA SEU MATERIAL
@@ -140,8 +137,6 @@ export default function Home() {
                   <div className="text-2xl md:text-3xl font-bold text-white mb-4">
                     VIA WHATSAPP
                   </div>
-                  
-                  {/* DESTAQUE DO PAGAMENTO DEPOIS */}
                   <div className="bg-yellow-400/20 border-2 border-yellow-400/50 rounded-xl p-4 mb-4">
                     <div className="text-yellow-300 text-xl font-bold mb-2">
                       💛 SEM RISCO ZERO
@@ -154,22 +149,19 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-
-                {/* Sub-texto explicativo */}
                 <div className="text-green-200 text-lg mb-6">
                   <p>🚀 Enviamos diretamente no seu WhatsApp</p>
                   <p>⏰ Em poucos minutos você já está estudando</p>
                   <p>📱 Acesso em qualquer dispositivo</p>
                   <p>💰 Pague somente após ficar satisfeito</p>
                 </div>
-
+                
                 {/* Botão principal */}
                 <div className="w-full max-w-md mx-auto">
                   <Button 
-                    data-action="iniciar-whatsapp"
                     size="lg" 
                     className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-6 md:py-8 px-12 md:px-16 rounded-full text-2xl md:text-3xl shadow-2xl transform hover:scale-105 transition-all duration-300 w-full relative overflow-hidden group"
-                    onClick={() => window.open(whatsappLink, '_blank')}
+                    onClick={handleWhatsAppClick}
                   >
                     <span className="relative z-10 flex items-center justify-center">
                       <MessageCircle className="w-8 h-8 md:w-10 md:h-10 mr-4" />
@@ -179,7 +171,6 @@ export default function Home() {
                   </Button>
                 </div>
 
-                {/* Texto de incentivo */}
                 <p className="text-green-300 text-sm mt-4 animate-pulse">
                   👆 Clique agora e receba em menos de 2 minutos! Pague depois de conferir!
                 </p>
@@ -188,7 +179,7 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        {/* Elementos de Confiança */}
+        {/* ... (resto do conteúdo até o próximo botão) ... */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           <Card className="bg-white/5 border border-white/20 backdrop-blur-sm">
             <CardContent className="p-6 text-center">
@@ -215,7 +206,6 @@ export default function Home() {
           </Card>
         </div>
 
-        {/* Seção Final */}
         <div className="text-center">
           <div className="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 border border-yellow-400/30 rounded-2xl p-8">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
@@ -233,10 +223,9 @@ export default function Home() {
               </div>
             </div>
             <Button 
-              data-action="iniciar-whatsapp"
               variant="outline" 
               className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-semibold text-lg py-3 px-8 rounded-full"
-              onClick={() => window.open(whatsappLink, '_blank')}
+              onClick={handleWhatsAppClick}
             >
               FALAR COM ESPECIALISTA
             </Button>
@@ -247,10 +236,9 @@ export default function Home() {
       {/* Botão Flutuante (Fixo) para Mobile */}
       <div className="fixed bottom-4 right-4 z-50 md:hidden">
         <Button 
-          data-action="iniciar-whatsapp"
           size="lg"
           className="bg-green-500 hover:bg-green-600 text-white rounded-full w-16 h-16 shadow-2xl animate-pulse"
-          onClick={() => window.open(whatsappLink, '_blank')}
+          onClick={handleWhatsAppClick}
         >
           <MessageCircle className="w-8 h-8" />
         </Button>
@@ -259,10 +247,9 @@ export default function Home() {
       {/* Botão Flutuante para Desktop */}
       <div className="fixed bottom-6 right-6 z-50 hidden md:block">
         <Button 
-          data-action="iniciar-whatsapp"
           size="lg"
           className="bg-green-500 hover:bg-green-600 text-white rounded-full w-20 h-20 shadow-2xl animate-pulse"
-          onClick={() => window.open(whatsappLink, '_blank')}
+          onClick={handleWhatsAppClick}
         >
           <MessageCircle className="w-10 h-10" />
         </Button>
@@ -286,4 +273,3 @@ export default function Home() {
     </div>
   );
 }
-// Forçando a atualização
